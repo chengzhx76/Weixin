@@ -8,3 +8,4 @@
 
 #不忽略的文件
 !.gitignore
+/target/

@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.alibaba.fastjson.JSON;
 import com.cheng.weixin.common.WeixinUrl;
 import com.cheng.weixin.enums.ActionType;
-import com.cheng.weixin.model.Menu;
+import com.cheng.weixin.request.model.Menu;
 import com.cheng.weixin.scheduling.RefreshAccessTokenTask;
 import com.cheng.weixin.utils.HttpUtils;
 

@@ -1,23 +1,9 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.request.model;
 
-/**
- * 语音消息
- * @author Cheng
- */
-public class MediaMessage extends BaseMessage {
-	
-	private Media Media;
-	
-	public Media getMedia() {
-		return Media;
-	}
-	public void setMedia(Media media) {
-		this.Media = media;
-	}
-	
-}
+import java.io.Serializable;
 
-class Media {
+public class Media implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String MediaId;
 	private String Title;// 非必须
 	private String Description;// 非必须
@@ -40,5 +26,4 @@ class Media {
 	public void setDescription(String description) {
 		Description = description;
 	}
-	
 }

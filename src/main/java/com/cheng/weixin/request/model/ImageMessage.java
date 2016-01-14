@@ -1,4 +1,4 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.request.model;
 
 /**
  * 图片消息
@@ -6,6 +6,7 @@ package com.cheng.weixin.model;
  */
 public class ImageMessage extends BaseMessage {
 	
+	private static final long serialVersionUID = 1L;
 	private Image Image;
 	
 	public Image getImage() {
@@ -13,19 +14,6 @@ public class ImageMessage extends BaseMessage {
 	}
 	public void setImage(Image image) {
 		this.Image = image;
-	}
-	
-}
-
-class Image {
-	private String MediaId;
-
-	public String getMediaId() {
-		return MediaId;
-	}
-
-	public void setMediaId(String mediaId) {
-		MediaId = mediaId;
 	}
 	
 }

@@ -33,7 +33,7 @@
     <mybatis.spring.version>1.2.1</mybatis.spring.version>
     
     <source.version>2.4</source.version>
-    <compiler.version>2.0.2</compiler.version>
+    <compiler.version>3.1</compiler.version>
     <jetty.version>8.1.9.v20130131</jetty.version>
   </properties>
   

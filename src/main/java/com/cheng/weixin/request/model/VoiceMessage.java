@@ -1,4 +1,4 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.request.model;
 
 /**
  * 语音消息
@@ -6,6 +6,7 @@ package com.cheng.weixin.model;
  */
 public class VoiceMessage extends BaseMessage {
 	
+	private static final long serialVersionUID = 1L;
 	private Voice Voice;
 	
 	public Voice getVoice() {

@@ -1,4 +1,6 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.request.model;
+
+import java.io.Serializable;
 
 import com.cheng.weixin.enums.MsgType;
 /**
@@ -6,7 +8,8 @@ import com.cheng.weixin.enums.MsgType;
  * @author Cheng
  *
  */
-public abstract class BaseMessage {
+public abstract class BaseMessage implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String ToUserName;
 	private String FromUserName;
 	private long CreateTime;

@@ -18,7 +18,9 @@ import org.slf4j.LoggerFactory;
 
 import com.cheng.weixin.enums.Event;
 import com.cheng.weixin.enums.MsgType;
-import com.cheng.weixin.model.TextMessage;
+import com.cheng.weixin.request.model.Image;
+import com.cheng.weixin.request.model.ImageMessage;
+import com.cheng.weixin.request.model.TextMessage;
 import com.cheng.weixin.utils.XMLUtils;
 
 /**
@@ -106,7 +108,8 @@ public class MessageHandle {
 		}else if(MsgType.voice.name().equals(msgType)) {
 			content="你发送的是voice消息！";
 		}else if(MsgType.image.name().equals(msgType)) {
-			content="你发送的是image消息！";
+//			content="你发送的是image消息！";
+			return imageTypeMsgHandle(msgMap);
 		}else if(MsgType.shortvideo.name().equals(msgType)) {
 			content="你发送的是shortvideo消息！";
 		}else if(MsgType.location.name().equals(msgType)) {
@@ -174,7 +177,25 @@ public class MessageHandle {
 		textMsg.setMsgType(MsgType.text);
 		textMsg.setContent(content);
 		
-		return XMLUtils.textMsg2XML(textMsg);
+		return XMLUtils.msg2XML(textMsg);
+	}
+	/**
+	 * 图片消息处理
+	 * @param msgMap
+	 * @return
+	 */
+	private static String imageTypeMsgHandle(Map<String, String> msgMap) {
+		ImageMessage imgMsg = new ImageMessage();
+		imgMsg.setToUserName(msgMap.get("FromUserName"));
+		imgMsg.setFromUserName(msgMap.get("ToUserName"));
+		imgMsg.setCreateTime(new Date().getTime());
+		imgMsg.setMsgType(MsgType.image);    
+		Image img = new Image();
+		String mediaId = "M8K2WcayqjRaisQMCygVpWk1VDAjL8XMhvB66Y5TpBHsopHViOEOIR4semy9oOAD";
+		img.setMediaId(mediaId);
+		imgMsg.setImage(img);
+		
+		return XMLUtils.msg2XML(imgMsg);
 	}
 	
 }

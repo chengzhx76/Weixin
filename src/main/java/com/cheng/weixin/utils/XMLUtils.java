@@ -1,11 +1,10 @@
 package com.cheng.weixin.utils;
 
+import java.io.Serializable;
 import java.io.Writer;
 
 import com.cheng.weixin.enums.Event;
 import com.cheng.weixin.enums.MsgType;
-import com.cheng.weixin.model.TextMessage;
-import com.cheng.weixin.model.VoiceMessage;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
@@ -22,15 +21,15 @@ public class XMLUtils {
 	 * @param textMessage
 	 * @return
 	 */
-	public static String textMsg2XML(TextMessage textMsg) {
-		xstream.alias("xml", textMsg.getClass());
-		return xstream.toXML(textMsg);
+	public static String msg2XML(Serializable msg) {
+		xstream.alias("xml", msg.getClass());
+		return xstream.toXML(msg);
 	}
 	
-	public static String voiceMsg2XML(VoiceMessage voiceMsg) {
-		xstream.alias("xml", voiceMsg.getClass());
-		return xstream.toXML(voiceMsg);
-	}
+//	public static String voiceMsg2XML(VoiceMessage voiceMsg) {
+//		xstream.alias("xml", voiceMsg.getClass());
+//		return xstream.toXML(voiceMsg);
+//	}
 	
 	
 	

@@ -1,4 +1,4 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.response.model;
 /**
  * 动态Token
  * @author Cheng

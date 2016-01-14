@@ -1,9 +1,10 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.request.model;
 /**
  * 文本消息
  * @author Cheng
  */
 public class TextMessage extends BaseMessage {
+	private static final long serialVersionUID = 1L;
 	private String Content;
 
 	public String getContent() {

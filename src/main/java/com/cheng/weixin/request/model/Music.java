@@ -1,23 +1,9 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.request.model;
 
-/**
- * 音乐消息
- * @author Cheng
- */
-public class MusicMessage extends BaseMessage {
-	
-	private Music Music;
-	
-	public Music getMusic() {
-		return Music;
-	}
-	public void setMusic(Music music) {
-		this.Music = music;
-	}
-	
-}
+import java.io.Serializable;
 
-class Music {
+public class Music implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String MediaId;
 	private String Title;// 非必须
 	private String Description;// 非必须
@@ -61,5 +47,5 @@ class Music {
 	public void setThumbMediaId(String thumbMediaId) {
 		ThumbMediaId = thumbMediaId;
 	}
-	
+		
 }

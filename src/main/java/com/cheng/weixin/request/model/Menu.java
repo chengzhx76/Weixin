@@ -1,4 +1,4 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.request.model;
 
 import java.io.Serializable;
 import java.util.List;

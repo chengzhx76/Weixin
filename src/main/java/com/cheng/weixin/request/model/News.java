@@ -1,24 +1,9 @@
-package com.cheng.weixin.model;
+package com.cheng.weixin.request.model;
 
-import java.util.List;
+import java.io.Serializable;
 
-/**
- * 图文消息
- * @author Cheng
- */
-public class NewsMessage extends BaseMessage {
-	
-	private List<News> Articles;
-	
-	public List<News> getArticles() {
-		return Articles;
-	}
-	public void setArticles(List<News> articles) {
-		this.Articles = articles;
-	}
-}
-
-class News {
+public class News implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String Title;
 	private String Description;
 	private String PicUrl;
@@ -48,5 +33,4 @@ class News {
 	public void setUrl(String url) {
 		Url = url;
 	}
-
 }

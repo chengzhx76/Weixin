@@ -1,4 +1,4 @@
-package com.cheng.weixin.common;
+package com.cheng.weixin.exception;
 
 /**
  * 错误消息 包装类
