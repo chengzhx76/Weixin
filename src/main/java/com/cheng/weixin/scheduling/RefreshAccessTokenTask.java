@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 public class RefreshAccessTokenTask {
 	
 	private static final Logger log = LoggerFactory.getLogger(RefreshAccessTokenTask.class);
-	public static String accessToken = "qDrEFsAfa6gqolCWjp_MiAQaEpcp_nJyS92GJa6gvr3DI8cVjYmI6v7RdUcGg6fGnGSi2raAwLaS79D4YamU8ZtGXQsgCR_GMQZ1gqibhR4ZJVgACARBN";
+	public static String accessToken = "YfriM6J0JU4Q4ULjQkhvRxw3xwSL6Wb1YBckzd1oswaTIEWMOhSZg7qwBqML4MQW6woGVm0Fz2-rKWzyA_aJtk-UjAXk7-HPqQ8PsE6NSFUUUPgAAAXXS";
 	
 	public void refreshToken() {
 		/*
@@ -20,7 +20,7 @@ public class RefreshAccessTokenTask {
 			String content = HttpUtils.httpGet(url);
 			AccessToken accessToken = JSON.parseObject(content, AccessToken.class);
 			WeixinContent.setAccessToken(accessToken.getAccess_token());
-		} catch (BusinessException err) {
+		} catch (WeixinException err) {
 //			err.printStackTrace();
 			log.error("发生错误，错误码：{}，错误消息：{}，正在重试！", err.getCode(), err.getErrorMsg());
 			refreshToken();

@@ -18,6 +18,8 @@ import org.slf4j.LoggerFactory;
 
 import com.cheng.weixin.enums.Event;
 import com.cheng.weixin.enums.MsgType;
+import com.cheng.weixin.enums.Status;
+import com.cheng.weixin.exception.MassageException;
 import com.cheng.weixin.request.model.Image;
 import com.cheng.weixin.request.model.ImageMessage;
 import com.cheng.weixin.request.model.TextMessage;
@@ -49,11 +51,11 @@ public class MessageHandle {
 			for(Element element:elements) {
 				maps.put(element.getName(), element.getText());
 			}
+			return maps;
 		} catch (IOException | DocumentException e) {
-			log.error("消息转换Map出错！");
-			e.printStackTrace();
+			log.error("消息转换Map出错！错误消息：{}", e.getMessage());
+			throw new MassageException(3000, "消息转换Map出错");
 		}
-		return maps;
 	}
 	
 	/**
@@ -64,8 +66,6 @@ public class MessageHandle {
 	public static String handleResp(Map<String, String> msgMap) {
 		String msgType = msgMap.get("MsgType");
 		String eventType = msgMap.get("Event");
-		String content = "请求处理异常，请稍后再试！";
-		
 		if(eventType!=null) {
 			if(Event.unsubscribe.name().equals(eventType)) {
 				return handleUnsubscribe(msgMap);
@@ -80,9 +80,7 @@ public class MessageHandle {
 				return handleMsg(msgMap);
 			}
 		}
-			
-		log.info(content);
-		return textTypeMsgHandle(msgMap, content);
+		throw new MassageException(30001, "没有此消息类型和事件类型");
 	}
 	/**
 	 * 用户取消订阅
@@ -101,24 +99,20 @@ public class MessageHandle {
 	 */
 	private static String handleMsg(Map<String, String> msgMap) {
 		String msgType = msgMap.get("MsgType");
-		String content = "请求处理消息异常，请稍后再试！";
-		
 		if(MsgType.text.name().equals(msgType)) {
-			content="你发送的是text消息！";
+			return textTypeMsgHandle(msgMap, "你发送的是text消息！");
 		}else if(MsgType.voice.name().equals(msgType)) {
-			content="你发送的是voice消息！";
+			return textTypeMsgHandle(msgMap, "你发送的是voice消息！");
 		}else if(MsgType.image.name().equals(msgType)) {
-//			content="你发送的是image消息！";
 			return imageTypeMsgHandle(msgMap);
 		}else if(MsgType.shortvideo.name().equals(msgType)) {
-			content="你发送的是shortvideo消息！";
+			return textTypeMsgHandle(msgMap, "你发送的是shortvideo消息！");
 		}else if(MsgType.location.name().equals(msgType)) {
-			content="你发送的是location消息！";
+			return textTypeMsgHandle(msgMap, "你发送的是location消息！");
 		}else if(MsgType.link.name().equals(msgType)) {
-			content="你发送的是link消息！";
+			return textTypeMsgHandle(msgMap, "你发送的是link消息！");
 		}
-		log.info(content);
-		return textTypeMsgHandle(msgMap, content);
+		throw new MassageException(30002, "没有此消息类型");
 	}
 	/**
 	 * 处理事件
@@ -127,41 +121,52 @@ public class MessageHandle {
 	 */
 	private static String handleEvent(Map<String, String> msgMap) {
 		String eventType = msgMap.get("Event");
-		String content = "请求处理事件类型异常，请稍后再试！";
-		
 		if(Event.subscribe.name().equals(eventType)) {
-			content="谢谢关注！";
+			return textTypeMsgHandle(msgMap, "谢谢关注！");
 		}else if(Event.CLICK.name().equals(eventType)) {
-			content="自定义菜单事件！";
+			return textTypeMsgHandle(msgMap, "自定义菜单事件！");
 		}else if(Event.LOCATION.name().equals(eventType)) {
-			content="上报地理位置事件！";
+			return textTypeMsgHandle(msgMap, "上报地理位置事件！");
 		}else if(Event.SCAN.name().equals(eventType)) {
-			content="扫描带参数二维码事件！";
+			return textTypeMsgHandle(msgMap, "扫描带参数二维码事件！");
 		}else if(Event.VIEW.name().equals(eventType)) {
-			content="点击菜单跳转链接时的事件推送！";
+			return textTypeMsgHandle(msgMap, "点击菜单跳转链接时的事件推送！");
 		}else if(Event.click.name().equals(eventType)) {
-			content="点击推事件！";
+			return textTypeMsgHandle(msgMap, "点击推事件！");
 		}else if(Event.view.name().equals(eventType)) {
-			content="跳转URL！";
+			return textTypeMsgHandle(msgMap, "跳转URL！");
 		}else if(Event.scancode_push.name().equals(eventType)) {
-			content="扫码推事件！";
+			return textTypeMsgHandle(msgMap, "扫码推事件！");
 		}else if(Event.scancode_waitmsg.name().equals(eventType)) {
-			content="扫码带提示！";
+			return textTypeMsgHandle(msgMap, "扫码带提示！");
 		}else if(Event.pic_sysphoto.name().equals(eventType)) {
-			content="弹出系统拍照发图！";
+			return textTypeMsgHandle(msgMap, "弹出系统拍照发图！");
 		}else if(Event.pic_photo_or_album.name().equals(eventType)) {
-			content="弹出拍照或者相册发图！";
+			return textTypeMsgHandle(msgMap, "弹出拍照或者相册发图！");
 		}else if(Event.pic_weixin.name().equals(eventType)) {
-			content="弹出微信相册发图器！";
+			return textTypeMsgHandle(msgMap, "弹出微信相册发图器！");
 		}else if(Event.location_select.name().equals(eventType)) {
-			content="弹出地理位置选择器！";
+			return textTypeMsgHandle(msgMap, "弹出地理位置选择器！");
 		}else if(Event.media_id.name().equals(eventType)) {
-			content="下发消息（除文本消息）！";
+			return textTypeMsgHandle(msgMap, "下发消息（除文本消息）！");
 		}else if(Event.view_limited.name().equals(eventType)) {
-			content="跳转图文消息URL！";
+			return textTypeMsgHandle(msgMap, "跳转图文消息URL！");
+		}else if(Event.TEMPLATESENDJOBFINISH.name().equals(eventType)) {
+			// 主动发消息是不用给微信回复消息的，回复了用户也接不到
+			String status = msgMap.get("Status"); 
+			String msgID = msgMap.get("MsgID"); 
+			if(Status.SUCCESS.getName().equals(status)) {
+				log.debug("消息发送成功，消息ID：{}", msgID);
+			}else if(Status.SYSTEM_FAILED.getName().equals(status)) {
+				log.debug("消息发送失败，消息ID：{}", msgID);
+			}else if(Status.USER_BLOCK.getName().equals(status)) {
+				log.debug("消息被用户拒收，消息ID：{}", msgID);
+			}else {
+				log.debug("消息发送遇到未知异常，消息ID：{}", msgID);
+			}
+			return "success";
 		}
-		log.info(content);
-		return textTypeMsgHandle(msgMap, content);
+		throw new MassageException(30003, "没有此事件类型");
 	}
 	
 	/**
@@ -189,7 +194,7 @@ public class MessageHandle {
 		imgMsg.setToUserName(msgMap.get("FromUserName"));
 		imgMsg.setFromUserName(msgMap.get("ToUserName"));
 		imgMsg.setCreateTime(new Date().getTime());
-		imgMsg.setMsgType(MsgType.image);    
+		imgMsg.setMsgType(MsgType.image);
 		Image img = new Image();
 		String mediaId = "M8K2WcayqjRaisQMCygVpWk1VDAjL8XMhvB66Y5TpBHsopHViOEOIR4semy9oOAD";
 		img.setMediaId(mediaId);

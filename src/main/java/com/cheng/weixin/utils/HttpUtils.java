@@ -20,8 +20,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.cheng.weixin.exception.BusinessException;
 import com.cheng.weixin.exception.ErrorEntity;
+import com.cheng.weixin.exception.WeixinException;
 /**
  * HTTP请求方法
  * @author Cheng
@@ -47,7 +47,7 @@ public class HttpUtils {
 				ErrorEntity err = JSON.parseObject(content, ErrorEntity.class);
 				if(err.getErrcode()!=null && !err.getErrcode().equals("0") &&
 				   err.getErrmsg()!=null && !err.getErrmsg().equals("ok")) {
-					throw new BusinessException(Integer.parseInt(err.getErrcode()), err.getErrmsg());
+					throw new WeixinException(Integer.parseInt(err.getErrcode()), err.getErrmsg());
 				}
 				return content;
 			}
@@ -92,7 +92,7 @@ public class HttpUtils {
 				ErrorEntity err = JSON.parseObject(content, ErrorEntity.class);
 				if(err.getErrcode()!=null && !err.getErrcode().equals("0") &&
 				   err.getErrmsg()!=null && !err.getErrmsg().equals("ok")) {
-					throw new BusinessException(Integer.parseInt(err.getErrcode()), err.getErrmsg());
+					throw new WeixinException(Integer.parseInt(err.getErrcode()), err.getErrmsg());
 				}
 				return content;
 			}
@@ -136,7 +136,7 @@ public class HttpUtils {
 				ErrorEntity err = JSON.parseObject(content, ErrorEntity.class);
 				if(err.getErrcode()!=null && !err.getErrcode().equals("0") &&
 				   err.getErrmsg()!=null && !err.getErrmsg().equals("ok")) {
-					throw new BusinessException(Integer.parseInt(err.getErrcode()), err.getErrmsg());
+					throw new WeixinException(Integer.parseInt(err.getErrcode()), err.getErrmsg());
 				}
 				return content;
 			}
@@ -182,7 +182,7 @@ public class HttpUtils {
 					ErrorEntity err = JSON.parseObject(content, ErrorEntity.class);
 					if(err.getErrcode()!=null && !err.getErrcode().equals("0") &&
 							err.getErrmsg()!=null && !err.getErrmsg().equals("ok")) {
-						throw new BusinessException(Integer.parseInt(err.getErrcode()), err.getErrmsg());
+						throw new WeixinException(Integer.parseInt(err.getErrcode()), err.getErrmsg());
 					}
 				}
 			}

@@ -21,6 +21,9 @@
 	<context:component-scan base-package="com.cheng.weixin.controllers" use-default-filters="false">
      <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
+	<context:component-scan base-package="com.cheng.weixin.exception.handle" use-default-filters="false">
+     <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
 	
 	<!-- 对模型视图添加前后缀 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

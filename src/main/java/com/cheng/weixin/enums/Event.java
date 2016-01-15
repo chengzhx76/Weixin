@@ -21,5 +21,8 @@ public enum Event {
 	pic_weixin,
 	location_select,
 	media_id,
-	view_limited;
+	view_limited,
+	
+	TEMPLATESENDJOBFINISH;
+	
 }

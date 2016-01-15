@@ -1,13 +1,14 @@
 package com.cheng.weixin.exception;
 
-public class BusinessException extends RuntimeException {
+public class MassageException extends RuntimeException {
 
-	private static final long serialVersionUID = -9213841740412778182L;
-	
+	private static final long serialVersionUID = 1L;
 	private int code;
 	private String errorMsg;
 	
-	public BusinessException(int code, String errorMsg) {
+	public MassageException() {
+	}
+	public MassageException(int code, String errorMsg) {
 		this.code = code;
 		this.errorMsg = errorMsg;
 	}
