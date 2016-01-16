@@ -11,8 +11,8 @@ import com.alibaba.fastjson.JSON;
 import com.cheng.weixin.common.WeixinUrl;
 import com.cheng.weixin.enums.ActionType;
 import com.cheng.weixin.request.model.Menu;
-import com.cheng.weixin.scheduling.RefreshAccessTokenTask;
 import com.cheng.weixin.utils.HttpUtils;
+import com.cheng.weixin.utils.WeixinContent;
 
 public class AddMenu {
 	@Test
@@ -57,7 +57,7 @@ public class AddMenu {
 		System.out.println(menuJson);
 		
 		String addMenuUrl = WeixinUrl.ADDMENU_URL;
-		addMenuUrl = addMenuUrl.replace("ACCESS_TOKEN", RefreshAccessTokenTask.accessToken);
+		addMenuUrl = addMenuUrl.replace("ACCESS_TOKEN", WeixinContent.getInstance().getAccessToken());
 		
 		System.out.println(HttpUtils.httpPost(addMenuUrl, menuJson));
 		

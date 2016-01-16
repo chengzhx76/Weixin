@@ -14,8 +14,8 @@ import com.cheng.weixin.exception.WeixinException;
 import com.cheng.weixin.request.model.ModelMsgData;
 import com.cheng.weixin.request.model.TemplateMessage;
 import com.cheng.weixin.response.model.SendTemplateMassage;
-import com.cheng.weixin.scheduling.RefreshAccessTokenTask;
 import com.cheng.weixin.utils.HttpUtils;
+import com.cheng.weixin.utils.WeixinContent;
 
 public class SendMessage {
 
@@ -33,7 +33,7 @@ public class SendMessage {
 		try {
 			String data = JSON.toJSONString(templateMsg);
 			
-			String url = WeixinUrl.SEND_TEMPLATEMSG_URL.replace("ACCESS_TOKEN", RefreshAccessTokenTask.accessToken);
+			String url = WeixinUrl.SEND_TEMPLATEMSG_URL.replace("ACCESS_TOKEN", WeixinContent.getInstance().getAccessToken());
 			System.err.println(data);
 			System.err.println(url);
 			

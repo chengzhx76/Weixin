@@ -3,6 +3,8 @@ package com.cheng.weixin.scheduling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cheng.weixin.utils.WeixinContent;
+
 /**
  * 刷新access_token 定时任务
  * @author Cheng
@@ -10,9 +12,17 @@ import org.slf4j.LoggerFactory;
 public class RefreshAccessTokenTask {
 	
 	private static final Logger log = LoggerFactory.getLogger(RefreshAccessTokenTask.class);
-	public static String accessToken = "YfriM6J0JU4Q4ULjQkhvRxw3xwSL6Wb1YBckzd1oswaTIEWMOhSZg7qwBqML4MQW6woGVm0Fz2-rKWzyA_aJtk-UjAXk7-HPqQ8PsE6NSFUUUPgAAAXXS";
+	private static String accessToken = "6E7oFSezSNJ-BvLh2cn4JMxI0EuoGVGmE00Uwc-o12HLOcPn7UlUl9MwtpJZFzQhOAiTBbidZuZlyk8iUWcLUheuAm0_rHJNnndTsLkeRmkUSGhAFADBP";
+	
+	static {
+		WeixinContent.getInstance().setAccessToken(accessToken);
+		log.info("已把access_token放入");
+	}
 	
 	public void refreshToken() {
+		
+		System.err.println("=============================");
+		
 		/*
 		String url = WeixinUrl.ACCESS_TOKEN_URL;
 		url = url.replace("APPID", WeixinFinalValue.APPID).replace("APPSECRET", WeixinFinalValue.APPSECRET);

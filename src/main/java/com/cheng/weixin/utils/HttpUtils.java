@@ -42,7 +42,7 @@ public class HttpUtils {
 			int statusCode = response.getStatusLine().getStatusCode();
 			if(statusCode>=HttpStatus.SC_OK&&statusCode<HttpStatus.SC_MULTIPLE_CHOICES) {
 				HttpEntity entity = response.getEntity();
-				String content = EntityUtils.toString(entity);
+				String content = EntityUtils.toString(entity,"UTF-8");
 				httpget.releaseConnection();
 				ErrorEntity err = JSON.parseObject(content, ErrorEntity.class);
 				if(err.getErrcode()!=null && !err.getErrcode().equals("0") &&
@@ -87,7 +87,7 @@ public class HttpUtils {
 			int statusCode = response.getStatusLine().getStatusCode();
 			if(statusCode>=HttpStatus.SC_OK&&statusCode<HttpStatus.SC_MULTIPLE_CHOICES) {
 				HttpEntity entity = response.getEntity();
-				String content = EntityUtils.toString(entity);
+				String content = EntityUtils.toString(entity,"UTF-8");
 				httppost.releaseConnection();
 				ErrorEntity err = JSON.parseObject(content, ErrorEntity.class);
 				if(err.getErrcode()!=null && !err.getErrcode().equals("0") &&
@@ -131,7 +131,7 @@ public class HttpUtils {
 			int statusCode = response.getStatusLine().getStatusCode();
 			if(statusCode>=HttpStatus.SC_OK&&statusCode<HttpStatus.SC_MULTIPLE_CHOICES) {
 				HttpEntity entityContent = response.getEntity();
-				String content = EntityUtils.toString(entityContent);
+				String content = EntityUtils.toString(entityContent,"UTF-8");
 				httppost.releaseConnection();
 				ErrorEntity err = JSON.parseObject(content, ErrorEntity.class);
 				if(err.getErrcode()!=null && !err.getErrcode().equals("0") &&
@@ -177,7 +177,7 @@ public class HttpUtils {
 					FileUtils.copyInputStreamToFile(is, new File(path));
 					httpget.releaseConnection();
 				}else {
-					String content = EntityUtils.toString(entity);
+					String content = EntityUtils.toString(entity,"UTF-8");
 					httpget.releaseConnection();
 					ErrorEntity err = JSON.parseObject(content, ErrorEntity.class);
 					if(err.getErrcode()!=null && !err.getErrcode().equals("0") &&

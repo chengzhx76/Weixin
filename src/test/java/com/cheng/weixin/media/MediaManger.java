@@ -9,8 +9,8 @@ import com.cheng.weixin.common.WeixinUrl;
 import com.cheng.weixin.enums.MidiaType;
 import com.cheng.weixin.exception.BusinessException;
 import com.cheng.weixin.response.model.Media;
-import com.cheng.weixin.scheduling.RefreshAccessTokenTask;
 import com.cheng.weixin.utils.HttpUtils;
+import com.cheng.weixin.utils.WeixinContent;
 
 public class MediaManger {
 	private static final Logger log = LoggerFactory.getLogger(MediaManger.class);
@@ -18,7 +18,7 @@ public class MediaManger {
 	@Test
 	public void addTempMidia() {
 		String url = WeixinUrl.ADD_TEMPMEDIA_URL;
-		url = url.replace("ACCESS_TOKEN", RefreshAccessTokenTask.accessToken).replace("TYPE", MidiaType.image.name());
+		url = url.replace("ACCESS_TOKEN", WeixinContent.getInstance().getAccessToken()).replace("TYPE", MidiaType.image.name());
 		
 		try {
 			String content = HttpUtils.postMedia(url, "C:\\Picture\\g.jpg");
@@ -32,7 +32,7 @@ public class MediaManger {
 	public void getMedie() {
 		String url = WeixinUrl.GET_MEDIA_URL;
 		String mediaId = "M8K2WcayqjRaisQMCygVpWk1VDAjL8XMhvB66Y5TpBHsopHViOEOIR4semy9oOAD";
-		url = url.replace("ACCESS_TOKEN", RefreshAccessTokenTask.accessToken).replace("MEDIA_ID", mediaId);
+		url = url.replace("ACCESS_TOKEN", WeixinContent.getInstance().getAccessToken()).replace("MEDIA_ID", mediaId);
 		try {
 			HttpUtils.getMidie(url, "D:\\1.jpg");
 		} catch (BusinessException err) {

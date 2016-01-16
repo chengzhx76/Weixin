@@ -63,7 +63,7 @@ public class WeixinController {
 	
 	@RequestMapping(value="getat",method=RequestMethod.GET)
 	public void getAccessToken(HttpServletResponse response) throws IOException {
-		response.getWriter().write(WeixinContent.getAccessToken());
+		response.getWriter().write(WeixinContent.getInstance().getAccessToken());
 	}
 	
 	@RequestMapping("index")
