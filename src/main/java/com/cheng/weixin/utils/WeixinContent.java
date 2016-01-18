@@ -13,7 +13,7 @@ public class WeixinContent {
 	}
 	
 //	private String accessToken;
-	private static String accessToken = "J_K2FG4Bz_kSjENzuIs2kraEBPkV2WQn-lQgBUoev50gRtsnc_VtQnRt6laqgbZPXjPgu-oGoBp8Hokw9m49daK1gSETefLYRiLNb-o-PlwLBXjAEAEUQ";
+	private static String accessToken = "vHgojVWqN5I_1tZ9PB5D9oz2YYfBnND6b1HeI6AqDpwGIzpj3ns3FviL44OyFyypom20nLa2-jpCX-Miv0qTT87waO5PTPQbQPjmEkmVnwEFJDjAHAZDX";
 	public String getAccessToken() {
 		return accessToken;
 	}

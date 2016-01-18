@@ -1,8 +1,8 @@
 package com.cheng.weixin.service;
 
-import java.util.List;
-
 import com.cheng.weixin.response.model.Group;
+
+import java.util.List;
 
 
 /**
@@ -12,7 +12,7 @@ import com.cheng.weixin.response.model.Group;
 public interface IGroupService {
 	/**
 	 * 增加分组
-	 * @param group
+	 * @param name
 	 */
 	Group addGroup(String name);
 	/**

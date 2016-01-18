@@ -1,9 +1,16 @@
 package com.cheng.weixin.common;
 
-public interface WeixinFinalValue {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-	String WX_TOKEN = "chengzhx76";
-	String APPID = "wxcabea2c14e5861ec";
-	String APPSECRET = "d4624c36b6795d1d99dcf0547af5443d";
+@Component
+public class WeixinFinalValue {
+
+	@Value("weixin.token")
+	public String WX_TOKEN;
+	@Value("weixin.appid")
+	public String APPID;
+	@Value("weixin.appsecret")
+	public String APPSECRET;
 	
 }

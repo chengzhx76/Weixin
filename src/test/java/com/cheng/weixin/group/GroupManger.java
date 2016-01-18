@@ -1,23 +1,21 @@
 package com.cheng.weixin.group;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.cheng.weixin.exception.WeixinException;
 import com.cheng.weixin.response.model.Group;
 import com.cheng.weixin.service.IGroupService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
@@ -25,13 +23,13 @@ public class GroupManger {
 //	private BeanFactory factory = new ClassPathXmlApplicationContext("/beans.xml");
 	@Resource
 	private IGroupService groupService;
-	
+
 	@Test
 	public void addGroup() {
 		Group group = groupService.addGroup("测试组01");
 		System.out.println(group);
 	}
-	
+
 	@Test
 	public void getAllGroup() {
 		try {
@@ -59,20 +57,20 @@ public class GroupManger {
 	}
 	@Test
 	public void updateBatchUserGroup() {
-		
+
 		List<String> openids = new ArrayList<>();
 		openids.add("oR43ywDiiYX9c_m0N8frmqQsrigk");
 		openids.add("oR43ywC-VajmZ5tq5hIMzqKgUAS4");
-		
+
 		groupService.updateBatchMoveUserGroup(openids, 100);
 	}
-	
+
 	@Test
 	public void deleteGroup() {
 		groupService.deleteGroup(101);
 	}
-	
-	
+
+
 	@Test
 	public void test() {
 		Group group = new Group();
@@ -80,7 +78,7 @@ public class GroupManger {
 		group.setName("测试组01");
 		Map<String, Group> maps = new HashMap<>();
 		maps.put("group", group);
-		
+
 		System.out.println(JSON.toJSON(maps));
 	}
 	@Test
@@ -99,7 +97,7 @@ public class GroupManger {
 	public void test02() {
 		String json = "{\"id\":100,\"name\":\"测试组01\"}";
 		JSONObject group = JSONObject.parseObject(json);
-		
+
 		System.out.println(group);
 	}
 }

@@ -1,8 +1,5 @@
 package com.cheng.weixin.utils;
 
-import java.io.Serializable;
-import java.io.Writer;
-
 import com.cheng.weixin.enums.Event;
 import com.cheng.weixin.enums.MsgType;
 import com.thoughtworks.xstream.XStream;
@@ -10,6 +7,9 @@ import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
+
+import java.io.Serializable;
+import java.io.Writer;
 /**
  * XML工具类
  * @author Cheng
@@ -18,7 +18,7 @@ import com.thoughtworks.xstream.io.xml.XppDriver;
 public class XMLUtils {
 	/**
 	 * 将文本消息转换成XML
-	 * @param textMessage
+	 * @param msg
 	 * @return
 	 */
 	public static String msg2XML(Serializable msg) {

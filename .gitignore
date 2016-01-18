@@ -7,6 +7,5 @@
 .idea
 /pom.xml
 weixin.iml
-
 #不忽略的文件
 !.gitignore

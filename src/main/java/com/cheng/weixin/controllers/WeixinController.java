@@ -1,12 +1,7 @@
 package com.cheng.weixin.controllers;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.cheng.weixin.handle.MessageHandle;
+import com.cheng.weixin.utils.WeixinContent;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -15,19 +10,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cheng.weixin.common.WeixinFinalValue;
-import com.cheng.weixin.handle.MessageHandle;
-import com.cheng.weixin.utils.WeixinContent;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 
 @Controller
-public class WeixinController {
+public class WeixinController extends BaseWeixinController {
 	
 	private static final Logger log = LoggerFactory.getLogger(WeixinController.class);
 	
 	@RequestMapping(value="getWxMsg",method=RequestMethod.GET)
 	public void initWx(String signature, String timestamp, String nonce, String echostr, HttpServletResponse response) throws IOException {
 		if(StringUtils.isNoneBlank(signature, timestamp, nonce, echostr)) {
-			String[] arrs = {WeixinFinalValue.WX_TOKEN, timestamp, nonce};
+			String[] arrs = {weixinFinalValue.WX_TOKEN, timestamp, nonce};
 			Arrays.sort(arrs);
 			StringBuffer sb = new StringBuffer();
 			for(String wx:arrs) {
