@@ -1,11 +1,12 @@
-#ºöÂÔµÄÎÄ¼ş¼°ÎÄ¼ş¼Ğ
+#å¿½ç•¥çš„æ–‡ä»¶åŠæ–‡ä»¶å¤¹
 /target/*
 /.settings/*
-*.class
 .classpath
 .project
 .springBeans
+.idea
+/pom.xml
+weixin.iml
 
-#²»ºöÂÔµÄÎÄ¼ş
+#ä¸å¿½ç•¥çš„æ–‡ä»¶
 !.gitignore
-/target/
